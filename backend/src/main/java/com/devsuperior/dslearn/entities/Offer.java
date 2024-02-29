@@ -16,8 +16,6 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-import com.devsuperior.dslearn.Topic;
-
 @Entity
 @Table(name = "tb_offer")
 public class Offer implements Serializable {
