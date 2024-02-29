@@ -17,6 +17,8 @@ import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.devsuperior.dslearn.Topic;
+
 @Entity
 @Table(name = "tb_user")
 public class User implements Serializable {
@@ -37,6 +39,9 @@ public class User implements Serializable {
 	
 	@OneToMany(mappedBy = "user")
 	private List<Notification> notifications = new ArrayList<>();
+	
+	@OneToMany(mappedBy = "author")
+	private List<Topic> topics = new ArrayList<>();
 	
 	public User() {
 	}
@@ -78,6 +83,10 @@ public class User implements Serializable {
 
 	public List<Notification> getNotifications() {
 		return notifications;
+	}
+
+	public List<Topic> getTopics() {
+		return topics;
 	}
 
 	@Override

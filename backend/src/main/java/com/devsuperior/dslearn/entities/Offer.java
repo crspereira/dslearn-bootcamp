@@ -16,6 +16,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.devsuperior.dslearn.Topic;
+
 @Entity
 @Table(name = "tb_offer")
 public class Offer implements Serializable {
@@ -36,6 +38,9 @@ public class Offer implements Serializable {
 	
 	@OneToMany(mappedBy = "offer")
 	private List<Resource> resources = new ArrayList<>();
+	
+	@OneToMany(mappedBy = "offer")
+	private List<Topic> topics = new ArrayList<>();
 	
 	public Offer() {
 	}
@@ -90,6 +95,10 @@ public class Offer implements Serializable {
 
 	public List<Resource> getResources() {
 		return resources;
+	}
+
+	public List<Topic> getTopics() {
+		return topics;
 	}
 
 	@Override
