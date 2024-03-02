@@ -66,15 +66,13 @@ public class ResourceExceptionHandler {
 	
 	@ExceptionHandler(ForbiddenException.class)
 	public ResponseEntity<OAuth2CustomError> forbidden(ForbiddenException e, HttpServletRequest request) {
-		OAuth2CustomError err = new OAuth2CustomError();
-		err.setError("Forbidden!");
-		err.setErrorDescription(e.getMessage()); //mensagem setado no service
+		OAuth2CustomError err = new OAuth2CustomError("Forbidden!",e.getMessage());
 		return ResponseEntity.status(HttpStatus.FORBIDDEN).body(err);
 	}
 	
 	@ExceptionHandler(UnauthorizedException.class)
 	public ResponseEntity<OAuth2CustomError> unauthorized(UnauthorizedException e, HttpServletRequest request) {
-		OAuth2CustomError err = new OAuth2CustomError("Unauthorized", e.getMessage());
+		OAuth2CustomError err = new OAuth2CustomError("Unauthorized!", e.getMessage());
 		return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(err);
 	}
 }

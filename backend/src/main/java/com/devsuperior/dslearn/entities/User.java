@@ -113,30 +113,39 @@ public class User implements UserDetails, Serializable{ //UserDetails interface 
 	}
 	
 	//metodos UserDetails
-		@Override
-		public Collection<? extends GrantedAuthority> getAuthorities() {
-			return roles.stream().map(role -> new SimpleGrantedAuthority(role.getAuthority()))
-			.collect(Collectors.toList());
+	public boolean hasHole(String roleName) {
+		for (Role role : roles) {
+			if (role.getAuthority().equals(roleName)) {
+				return true;
+			}
 		}
-		@Override
-		public String getUsername() {
-			return email;
-		}
-		@Override
-		public boolean isAccountNonExpired() {
-			return true;
-		}
-		@Override
-		public boolean isAccountNonLocked() {
-			return true;
-		}
-		@Override
-		public boolean isCredentialsNonExpired() {
-			return true;
-		}
-		@Override
-		public boolean isEnabled() {
-			return true;
-		}
+		return false;
+	}
 	
+	@Override
+	public Collection<? extends GrantedAuthority> getAuthorities() {
+		return roles.stream().map(role -> new SimpleGrantedAuthority(role.getAuthority()))
+		.collect(Collectors.toList());
+	}
+	@Override
+	public String getUsername() {
+		return email;
+	}
+	@Override
+	public boolean isAccountNonExpired() {
+		return true;
+	}
+	@Override
+	public boolean isAccountNonLocked() {
+		return true;
+	}
+	@Override
+	public boolean isCredentialsNonExpired() {
+		return true;
+	}
+	@Override
+	public boolean isEnabled() {
+		return true;
+	}
+		
 }
