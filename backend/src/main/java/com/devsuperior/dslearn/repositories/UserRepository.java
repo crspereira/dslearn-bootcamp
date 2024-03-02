@@ -7,7 +7,8 @@ import com.devsuperior.dslearn.entities.User;
 
 @Repository
 public interface UserRepository extends JpaRepository<User, Long> {
-
+	
+	//query method
 	User findByEmail(String name);
 
 }
