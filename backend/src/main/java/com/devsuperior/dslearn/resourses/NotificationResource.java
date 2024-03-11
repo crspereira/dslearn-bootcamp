@@ -26,7 +26,8 @@ public class NotificationResource {
 	@GetMapping
 	public ResponseEntity<Page<NotificationDTO>> findNotificationByCurrrentUser(
 							@PageableDefault(page= 0, size= 12)
-							@RequestParam Boolean unreadOnly, Pageable pageable) {
+							@RequestParam(name = "unreadOnly", defaultValue = "false") Boolean unreadOnly,
+							Pageable pageable) {
 		Page<NotificationDTO> page = service.findNotificationByCurrrentUser(unreadOnly, pageable);
 		return ResponseEntity.status(HttpStatus.OK).body(page);
 	}	
